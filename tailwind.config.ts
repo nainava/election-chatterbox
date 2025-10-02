@@ -47,6 +47,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        harris: "hsl(var(--harris))",
+        trump: "hsl(var(--trump))",
+        other: "hsl(var(--other))",
+        chartBg: "hsl(var(--chart-bg))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
