@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import { DemographicControls } from "@/components/DemographicControls";
 import { ResultsDisplay } from "@/components/ResultsDisplay";
+import { CalculationBreakdown } from "@/components/CalculationBreakdown";
 import {
   exitPollData,
   renormalizeDistribution,
   applySwing,
   computeResults,
+  DemographicGroups,
 } from "@/lib/electionSimulator";
 
 const Index = () => {
@@ -28,14 +30,20 @@ const Index = () => {
     education: {},
   });
 
-  const results = useMemo(() => {
-    let adjustedGroups = { ...exitPollData[activeCategory] };
-    adjustedGroups = renormalizeDistribution(
-      adjustedGroups,
+  const { results, adjustedTurnout, finalGroups } = useMemo(() => {
+    const original = exitPollData[activeCategory];
+    let afterTurnout = renormalizeDistribution(
+      original,
       turnoutShifts[activeCategory] || {}
     );
-    adjustedGroups = applySwing(adjustedGroups, swingShifts[activeCategory] || {});
-    return computeResults(adjustedGroups);
+    let afterSwing = applySwing(afterTurnout, swingShifts[activeCategory] || {});
+    const finalResults = computeResults(afterSwing);
+    
+    return {
+      results: finalResults,
+      adjustedTurnout: afterTurnout,
+      finalGroups: afterSwing,
+    };
   }, [activeCategory, turnoutShifts, swingShifts]);
 
   const handleTurnoutChange = (group: string, value: number) => {
@@ -137,8 +145,15 @@ const Index = () => {
             </Tabs>
           </div>
 
-          <div className="lg:sticky lg:top-8 h-fit">
+          <div className="lg:sticky lg:top-8 h-fit space-y-6">
             <ResultsDisplay results={results} />
+            <CalculationBreakdown
+              category={activeCategory}
+              originalGroups={exitPollData[activeCategory]}
+              adjustedGroups={adjustedTurnout}
+              finalGroups={finalGroups}
+              results={results}
+            />
           </div>
         </div>
 
