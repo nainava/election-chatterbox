@@ -1,10 +1,11 @@
 import { useState, useMemo } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw, Newspaper } from "lucide-react";
 import { DemographicControls } from "@/components/DemographicControls";
 import { ResultsDisplay } from "@/components/ResultsDisplay";
 import { CalculationBreakdown } from "@/components/CalculationBreakdown";
+import { PopularVoteIndicator } from "@/components/PopularVoteIndicator";
 import {
   exitPollData,
   renormalizeDistribution,
@@ -81,20 +82,28 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b bg-card shadow-sm">
-        <div className="container mx-auto px-4 py-6">
+      <header className="border-b-4 border-foreground bg-card shadow-sm">
+        <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Election Simulator
-              </h1>
-              <p className="text-sm text-muted-foreground mt-1">
-                Explore how demographic shifts affect election outcomes
-              </p>
+            <div className="flex items-center gap-4">
+              <Newspaper className="w-12 h-12" strokeWidth={1.5} />
+              <div>
+                <h1 className="text-5xl font-display font-black tracking-tight leading-none">
+                  THE ELECTION SIMULATOR
+                </h1>
+                <p className="text-sm uppercase tracking-widest text-muted-foreground mt-2 font-serif">
+                  A Scientific Study of Electoral Demographics
+                </p>
+              </div>
             </div>
-            <Button variant="outline" size="sm" onClick={handleReset}>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleReset}
+              className="border-2 border-foreground font-serif font-semibold"
+            >
               <RotateCcw className="w-4 h-4 mr-2" />
-              Reset All
+              Reset
             </Button>
           </div>
         </div>
@@ -146,6 +155,7 @@ const Index = () => {
           </div>
 
           <div className="lg:sticky lg:top-8 h-fit space-y-6">
+            <PopularVoteIndicator results={results} />
             <ResultsDisplay results={results} />
             <CalculationBreakdown
               category={activeCategory}
@@ -157,32 +167,35 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="mt-12 p-6 rounded-lg bg-muted/30 border">
-          <h2 className="text-lg font-semibold mb-3">How to Use</h2>
-          <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>
-              <strong>Turnout Shift:</strong> Adjust how much more or less each group
-              votes (in percentage points)
+        <div className="mt-12 p-8 border-2 border-foreground/20 bg-newsprint">
+          <h2 className="text-2xl font-display font-bold mb-4 tracking-tight">
+            Instructions for Use
+          </h2>
+          <ul className="space-y-3 text-sm font-serif leading-relaxed">
+            <li className="border-l-2 border-foreground/30 pl-4">
+              <strong className="font-bold">Turnout Adjustment:</strong> Modify the percentage points by which each demographic group's voter participation increases or decreases from baseline levels.
             </li>
-            <li>
-              <strong>Swing to Harris:</strong> Move support between candidates within
-              each group (positive = more Harris support)
+            <li className="border-l-2 border-foreground/30 pl-4">
+              <strong className="font-bold">Electoral Swing:</strong> Redistribute candidate support within each demographic cohort. Positive values indicate movement toward Harris; negative values favor Trump.
             </li>
-            <li>
-              <strong>Live Results:</strong> See real-time calculations as you adjust the
-              sliders
+            <li className="border-l-2 border-foreground/30 pl-4">
+              <strong className="font-bold">Real-Time Calculation:</strong> All modifications are computed instantaneously, with results updating as parameters are adjusted.
             </li>
-            <li>
-              <strong>Categories:</strong> Switch between Gender, Race, and Education
-              demographics
+            <li className="border-l-2 border-foreground/30 pl-4">
+              <strong className="font-bold">Demographic Categories:</strong> Toggle between Gender, Race, and Educational Attainment to examine different voter segments.
             </li>
           </ul>
         </div>
       </main>
 
-      <footer className="border-t mt-12 py-6">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          Interactive election modeling tool • Based on exit poll data
+      <footer className="border-t-2 border-foreground/20 mt-12 py-8 bg-newsprint">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-xs uppercase tracking-widest text-muted-foreground font-serif">
+            Interactive Electoral Modeling Instrument
+          </div>
+          <div className="text-xs text-muted-foreground font-serif mt-1">
+            Based on Exit Poll Survey Data • All Rights Reserved
+          </div>
         </div>
       </footer>
     </div>

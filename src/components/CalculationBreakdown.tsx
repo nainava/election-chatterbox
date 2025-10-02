@@ -30,13 +30,13 @@ export function CalculationBreakdown({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Card className="shadow-[var(--shadow-card)] border-accent/20">
+    <Card className="shadow-[var(--shadow-card)] border-2 border-foreground/20 bg-newsprint">
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-        <CardHeader className="pb-3">
+        <CardHeader className="pb-3 border-b border-foreground/10">
           <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity">
             <div className="flex items-center gap-2">
               <Info className="w-5 h-5 text-accent" />
-              <CardTitle className="text-lg">Calculation Breakdown</CardTitle>
+              <CardTitle className="text-lg font-display tracking-tight">Methodology & Calculations</CardTitle>
             </div>
             <ChevronDown
               className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${

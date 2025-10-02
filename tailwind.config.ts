@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        serif: ['Merriweather', 'Georgia', 'serif'],
+        display: ['Playfair Display', 'Georgia', 'serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -51,6 +55,7 @@ export default {
         trump: "hsl(var(--trump))",
         other: "hsl(var(--other))",
         chartBg: "hsl(var(--chart-bg))",
+        newsprint: "hsl(var(--newsprint))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

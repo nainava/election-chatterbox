@@ -21,27 +21,27 @@ export function DemographicControls({
   onSwingChange,
 }: DemographicControlsProps) {
   return (
-    <Card className="shadow-[var(--shadow-card)]">
-      <CardHeader>
-        <CardTitle>{title} Controls</CardTitle>
+    <Card className="shadow-[var(--shadow-card)] border-2 border-foreground/20 bg-newsprint">
+      <CardHeader className="border-b-2 border-foreground/20">
+        <CardTitle className="font-display text-2xl tracking-tight">{title} Demographics</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         {Object.entries(groups).map(([group, stats]) => (
-          <div key={group} className="space-y-4 p-4 rounded-lg bg-muted/30">
-            <div className="flex justify-between items-center">
-              <h4 className="font-semibold text-sm">{group}</h4>
-              <div className="text-xs text-muted-foreground space-x-3">
-                <span>Share: {stats.share.toFixed(1)}%</span>
-                <span className="text-harris">H: {stats.Harris}%</span>
-                <span className="text-trump">T: {stats.Trump}%</span>
+          <div key={group} className="space-y-4 p-5 border-2 border-foreground/20 bg-card">
+            <div className="flex justify-between items-center pb-3 border-b border-foreground/10">
+              <h4 className="font-display font-semibold text-base">{group}</h4>
+              <div className="text-xs font-serif space-x-3 tabular-nums">
+                <span className="text-muted-foreground">Share: {stats.share.toFixed(1)}%</span>
+                <span className="text-harris font-semibold">H: {stats.Harris}%</span>
+                <span className="text-trump font-semibold">T: {stats.Trump}%</span>
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <Label className="text-xs">Turnout Shift</Label>
-                  <span className="text-xs font-mono text-muted-foreground">
+                  <Label className="text-xs font-serif uppercase tracking-wider">Turnout Adjustment</Label>
+                  <span className="text-xs font-display font-bold text-muted-foreground tabular-nums">
                     {turnoutShifts[group] > 0 ? "+" : ""}
                     {turnoutShifts[group]?.toFixed(1) || 0}pp
                   </span>
@@ -58,8 +58,8 @@ export function DemographicControls({
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <Label className="text-xs">Swing to Harris</Label>
-                  <span className="text-xs font-mono text-muted-foreground">
+                  <Label className="text-xs font-serif uppercase tracking-wider">Electoral Swing</Label>
+                  <span className="text-xs font-display font-bold text-muted-foreground tabular-nums">
                     {swingShifts[group] > 0 ? "+" : ""}
                     {swingShifts[group]?.toFixed(1) || 0}pp
                   </span>
