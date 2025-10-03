@@ -41,7 +41,8 @@ export function renormalizeDistribution(
   
   for (const [group, stats] of Object.entries(groups)) {
     const shift = turnoutShifts[group] || 0;
-    const newShare = Math.max(0, stats.share + shift);
+    // Multiplicative adjustment: -10 means "10% less turnout" → share * 0.9
+    const newShare = Math.max(0, stats.share * (1 + shift / 100));
     adjusted[group] = { ...stats, share: newShare };
   }
 
