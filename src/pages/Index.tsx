@@ -16,6 +16,13 @@ import {
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<string>("gender");
+  const [activeGroup, setActiveGroup] = useState<{
+    [category: string]: string | null;
+  }>({
+    gender: null,
+    race: null,
+    education: null,
+  });
   const [turnoutShifts, setTurnoutShifts] = useState<{
     [category: string]: { [group: string]: number };
   }>({
@@ -67,7 +74,49 @@ const Index = () => {
     }));
   };
 
+  const handleGroupSelect = (group: string) => {
+    const currentActive = activeGroup[activeCategory];
+    
+    // If selecting the same group, deselect it
+    if (currentActive === group) {
+      setActiveGroup((prev) => ({
+        ...prev,
+        [activeCategory]: null,
+      }));
+      return;
+    }
+    
+    // Reset previous group's adjustments if there was one
+    if (currentActive) {
+      setTurnoutShifts((prev) => ({
+        ...prev,
+        [activeCategory]: {
+          ...prev[activeCategory],
+          [currentActive]: 0,
+        },
+      }));
+      setSwingShifts((prev) => ({
+        ...prev,
+        [activeCategory]: {
+          ...prev[activeCategory],
+          [currentActive]: 0,
+        },
+      }));
+    }
+    
+    // Set new active group
+    setActiveGroup((prev) => ({
+      ...prev,
+      [activeCategory]: group,
+    }));
+  };
+
   const handleReset = () => {
+    setActiveGroup({
+      gender: null,
+      race: null,
+      education: null,
+    });
     setTurnoutShifts({
       gender: {},
       race: {},
@@ -123,8 +172,10 @@ const Index = () => {
                 <DemographicControls
                   title="Gender"
                   groups={exitPollData.gender}
+                  activeGroup={activeGroup.gender}
                   turnoutShifts={turnoutShifts.gender || {}}
                   swingShifts={swingShifts.gender || {}}
+                  onGroupSelect={handleGroupSelect}
                   onTurnoutChange={handleTurnoutChange}
                   onSwingChange={handleSwingChange}
                 />
@@ -134,8 +185,10 @@ const Index = () => {
                 <DemographicControls
                   title="Race"
                   groups={exitPollData.race}
+                  activeGroup={activeGroup.race}
                   turnoutShifts={turnoutShifts.race || {}}
                   swingShifts={swingShifts.race || {}}
+                  onGroupSelect={handleGroupSelect}
                   onTurnoutChange={handleTurnoutChange}
                   onSwingChange={handleSwingChange}
                 />
@@ -145,8 +198,10 @@ const Index = () => {
                 <DemographicControls
                   title="Education"
                   groups={exitPollData.education}
+                  activeGroup={activeGroup.education}
                   turnoutShifts={turnoutShifts.education || {}}
                   swingShifts={swingShifts.education || {}}
+                  onGroupSelect={handleGroupSelect}
                   onTurnoutChange={handleTurnoutChange}
                   onSwingChange={handleSwingChange}
                 />
