@@ -70,8 +70,9 @@ export function applySwing(
     const newStats = { ...stats };
 
     if (swing !== 0) {
-      newStats.Harris = Math.max(0, Math.min(100, stats.Harris + swing));
-      newStats.Trump = Math.max(0, Math.min(100, stats.Trump - swing));
+      // Negative swing (left) = toward Harris, Positive swing (right) = toward Trump
+      newStats.Harris = Math.max(0, Math.min(100, stats.Harris - swing));
+      newStats.Trump = Math.max(0, Math.min(100, stats.Trump + swing));
       
       const total = newStats.Harris + newStats.Trump + newStats.Other;
       newStats.Harris = (newStats.Harris / total) * 100;
