@@ -80,14 +80,21 @@ export function DemographicControls({
                         {swingShifts[group]?.toFixed(1) || 0}pp
                       </span>
                     </div>
-                    <Slider
-                      value={[swingShifts[group] || 0]}
-                      onValueChange={([value]) => onSwingChange(group, value)}
-                      min={-20}
-                      max={20}
-                      step={0.5}
-                      className="py-2"
-                    />
+                    <div className="relative">
+                      <Slider
+                        value={[swingShifts[group] || 0]}
+                        onValueChange={([value]) => onSwingChange(group, value)}
+                        min={-20}
+                        max={20}
+                        step={0.5}
+                        className="py-2"
+                      />
+                      <div className="flex justify-between items-center mt-1 text-[10px] font-serif uppercase tracking-wider">
+                        <span className="text-harris font-semibold">← To Harris</span>
+                        <span className="text-muted-foreground">Neutral</span>
+                        <span className="text-trump font-semibold">To Trump →</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
