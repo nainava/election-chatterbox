@@ -137,11 +137,11 @@ const Index = () => {
             <div className="flex items-center gap-4">
               <Newspaper className="w-12 h-12" strokeWidth={1.5} />
               <div>
-                <h1 className="text-5xl font-display font-black tracking-tight leading-none">
-                  THE ELECTION SIMULATOR
+                <h1 className="text-5xl font-title font-bold tracking-tight leading-none">
+                  THE COUNTERFACTUAL
                 </h1>
                 <p className="text-sm uppercase tracking-widest text-muted-foreground mt-2 font-serif">
-                  A Scientific Study of Electoral Demographics
+                  An election what-if simulator
                 </p>
               </div>
             </div>

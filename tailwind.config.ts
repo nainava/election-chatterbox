@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         serif: ['Merriweather', 'Georgia', 'serif'],
         display: ['Playfair Display', 'Georgia', 'serif'],
+        title: ['Bodoni Moda', 'Playfair Display', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
