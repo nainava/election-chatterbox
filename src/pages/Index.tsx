@@ -5,7 +5,6 @@ import { RotateCcw, Newspaper } from "lucide-react";
 import { DemographicControls } from "@/components/DemographicControls";
 import { ResultsDisplay } from "@/components/ResultsDisplay";
 import { CalculationBreakdown } from "@/components/CalculationBreakdown";
-import { PopularVoteIndicator } from "@/components/PopularVoteIndicator";
 import {
   exitPollData,
   renormalizeDistribution,
@@ -210,7 +209,6 @@ const Index = () => {
           </div>
 
           <div className="lg:sticky lg:top-8 h-fit space-y-6">
-            <PopularVoteIndicator results={results} />
             <ResultsDisplay results={results} />
             <CalculationBreakdown
               category={activeCategory}
