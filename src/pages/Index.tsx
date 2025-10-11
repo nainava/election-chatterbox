@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { RotateCcw, Newspaper } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import { DemographicControls } from "@/components/DemographicControls";
 import { ResultsDisplay } from "@/components/ResultsDisplay";
 import { CalculationBreakdown } from "@/components/CalculationBreakdown";
@@ -133,16 +133,13 @@ const Index = () => {
       <header className="border-b-4 border-foreground bg-card shadow-sm">
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Newspaper className="w-12 h-12" strokeWidth={1.5} />
-              <div>
-                <h1 className="text-5xl font-title font-bold tracking-tight leading-none">
-                  THE COUNTERFACTUAL
-                </h1>
-                <p className="text-sm uppercase tracking-widest text-muted-foreground mt-2 font-serif">
-                  An election what-if simulator
-                </p>
-              </div>
+            <div>
+              <h1 className="text-5xl font-title font-bold tracking-tight leading-none">
+                THE COUNTERFACTUAL
+              </h1>
+              <p className="text-sm uppercase tracking-widest text-muted-foreground mt-2 font-serif">
+                An election what-if simulator
+              </p>
             </div>
             <Button 
               variant="outline" 
